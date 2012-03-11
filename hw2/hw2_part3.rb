@@ -1,1 +1,1 @@
-http://myapp.heroku.com/
+http://cold-robot-3265.herokuapp.com/
