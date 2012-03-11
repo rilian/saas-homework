@@ -7,7 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @q = Movie.search(params[:q])
+    @movies = @q.result(:distinct => true)
   end
 
   def new
