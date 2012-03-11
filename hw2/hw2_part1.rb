@@ -23,7 +23,7 @@ class Numeric
 end
 
 #tests
-if ENV['TEST']
+if ENV['TEST1']
   success = total =0
 
   begin
@@ -80,12 +80,73 @@ end
 
 # b)
 
-def palindrome?(string)
-  string = string.downcase.gsub(/[^a-z]/,'')
-  length = string.length / 2
-  string[0, length] == string[-length, length].reverse
+class String
+  def palindrome?
+    str = self.downcase.gsub(/[^a-z]/,'')
+    length = str.length / 2
+    str[0, length] == str[-length, length].reverse
+  end
+end
+
+#tests
+if ENV['TEST2']
+  success = 0
+  success +=1 if "A man, a plan, a canal -- Panama".palindrome?
+  success +=1 if "Madam, I'm Adam!".palindrome?
+  success +=1 if "Abracadabra".nil? || !"Abracadabra".palindrome?
+
+  #success +=1 if count_words("A man, a plan, a canal -- Panama") == {'a' => 3, 'man' => 1, 'canal' => 1, 'panama' => 1, 'plan' => 1}
+  #success +=1 if count_words("Doo bee doo bee doo") == {'doo' => 3, 'bee' => 2}
+
+  puts "#{success}/3 are OK"
 end
 
 # c)
 
+module Enumerable
+  def palindrome?
+    length = self.size / 2
+    self[0, length].to_s == self[-length, length].to_s.reverse
+  end
+end
+
+class Range
+  def palindrome?
+    arr = self.to_a
+    length = arr.size / 2
+    arr[0, length].to_s == arr[-length, length].to_s.reverse
+  end
+end
+
+class Hash
+  def palindrome?
+    arr = self.to_a
+    length = arr.size / 2
+    arr[0, length].to_s == arr[-length, length].to_s.reverse
+  end
+end
+
+#tests
+if ENV['TEST3']
+  success = 0
+  success +=1 if ["a", "b", "c", "b", "a"].palindrome?
+  success +=1 unless [1,2,3,4,3,2].palindrome?
+
+  begin
+    {:a=>1, :b=>9}.palindrome?
+    success +=1
+  rescue
+  end
+
+  begin
+    {"hello" => "world"}.palindrome?
+
+    success +=1
+  rescue
+    "fail3"
+  end
+  success +=1 unless (1..2).palindrome?
+
+  puts "#{success}/5 are OK"
+end
 
