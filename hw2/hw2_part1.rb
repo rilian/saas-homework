@@ -126,10 +126,19 @@ class Hash
   end
 end
 
+class Array
+  def palindrome?
+    arr = self.to_a
+    length = arr.size / 2
+    arr[0, length].to_s == arr[-length, length].to_s.reverse
+  end
+end
+
 #tests
 if ENV['TEST3']
   success = 0
   success +=1 if ["a", "b", "c", "b", "a"].palindrome?
+  puts '["a", "b", "c", "b", "a"].palindrome? =' + "#{["a", "b", "c", "b", "a"].palindrome?.inspect}"
   success +=1 unless [1,2,3,4,3,2].palindrome?
 
   begin
