@@ -105,32 +105,11 @@ end
 
 module Enumerable
   def palindrome?
-    length = self.size / 2
-    self[0, length].to_s == self[-length, length].to_s.reverse
-  end
-end
-
-class Range
-  def palindrome?
-    arr = self.to_a
-    length = arr.size / 2
-    arr[0, length].to_s == arr[-length, length].to_s.reverse
-  end
-end
-
-class Hash
-  def palindrome?
-    arr = self.to_a
-    length = arr.size / 2
-    arr[0, length].to_s == arr[-length, length].to_s.reverse
-  end
-end
-
-class Array
-  def palindrome?
-    arr = self.to_a
-    length = arr.size / 2
-    arr[0, length].to_s == arr[-length, length].to_s.reverse
+    if self.to_a.respond_to?(:reverse)
+      self == self.reverse
+    else
+      false
+    end
   end
 end
 
