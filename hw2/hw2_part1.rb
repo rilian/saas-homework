@@ -105,7 +105,7 @@ end
 
 module Enumerable
   def palindrome?
-    self.to_a.respond_to?(:reverse) ? self == self.reverse : false
+    self.to_a.respond_to?(:reverse) ? self.to_a == self.to_a.reverse : false
   end
 end
 
