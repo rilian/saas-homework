@@ -4,11 +4,11 @@
 %table#movies
   %thead
     %tr
-      %th
+      %th{ :class => params[:q].has_key?('s') && params[:q][:s].index('title') ? 'hilite' : '' }
         = sort_link @q, :title, 'Movie Title', {}, :id => 'title_header'
       %th
         Rating
-      %th
+      %th{ :class => params[:q].has_key?('s') && params[:q][:s].index('release_date') ? 'hilite' : '' }
         = sort_link @q, :release_date, 'Release Date', {}, :id => 'release_date_header'
       %th More Info
   %tbody
