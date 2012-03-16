@@ -12,6 +12,7 @@ class AddMoreMovies < ActiveRecord::Migration
     {:title => 'Chicken Run', :rating => 'G', :release_date => '21-Jun-2000'},
   ]
   def up
+    Movie.delete_all
     MORE_MOVIES.each do |movie|
       Movie.create!(movie)
     end
