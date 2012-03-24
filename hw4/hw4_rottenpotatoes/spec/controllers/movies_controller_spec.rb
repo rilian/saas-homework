@@ -12,13 +12,13 @@ describe MoviesController do
       response.should redirect_to(movie_path(@m))
     end
   end
-
+  
   describe 'happy path' do
     before :each do
       @m=mock(Movie, :title => "Star Wars", :director => "director", :id => "1")
       Movie.stub!(:find).with("1").and_return(@m)
     end
-
+    
     it 'should generate routing for Similar Movies' do
       { :post => movie_similar_path(1) }.
       should route_to(:controller => "movies", :action => "similar", :movie_id => "1")
@@ -35,13 +35,13 @@ describe MoviesController do
       assigns(:movies).should == @m
     end
   end
-
+  
   describe 'sad path' do
     before :each do
       m=mock(Movie, :title => "Star Wars", :director => nil, :id => "1")
       Movie.stub!(:find).with("1").and_return(m)
     end
-
+    
     it 'should generate routing for Similar Movies' do
       { :post => movie_similar_path(1) }.
       should route_to(:controller => "movies", :action => "similar", :movie_id => "1")
@@ -52,7 +52,7 @@ describe MoviesController do
       flash[:notice].should_not be_blank
     end
   end
-
+  
   describe 'create and destroy' do
     it 'should create a new movie' do
       MoviesController.stub(:create).and_return(mock('Movie'))
