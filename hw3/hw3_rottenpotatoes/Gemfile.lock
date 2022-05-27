@@ -99,7 +99,7 @@ GEM
       racc (~> 1.4)
     polyglot (0.3.3)
     racc (1.6.0)
-    rack (1.3.6)
+    rack (1.3.10)
     rack-cache (1.0.3)
       rack (>= 0.4)
     rack-mount (0.8.3)
